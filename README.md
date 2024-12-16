@@ -1,3 +1,5 @@
+[![NPM Version](https://img.shields.io/npm/v/%40mergehez%2Fvue-color-picker)](https://www.npmjs.com/package/@mergehez/vue-color-picker)
+
 # Lightweight Vue Color Picker Component
 
 Since all color pickers I found were too large or too complex, I decided to create my own. I
