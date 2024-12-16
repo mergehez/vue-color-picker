@@ -1,0 +1,57 @@
+.color-picker{
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+
+  input[type=range]:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid #aaa;
+    height: 20px;
+    width: 12px;
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+  }
+
+  input[type=range]::-moz-range-thumb {
+    border: 1px solid #aaa;
+    height: 20px;
+    width: 10px;
+    border-radius: 3px;
+    background: white;
+    cursor: pointer;
+  }
+
+  input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+}
+
+.dark .color-picker input[type=range]::-moz-range-thumb,
+.dark .color-picker input[type=range]::-webkit-slider-thumb {
+  background: red !important;
+  border-color: #ddd;
+}
+.color-picker .opacity-wrapper {
+  display: flex;
+  align-items: center;
+  --cdark: #57575723;
+  --clight: #9292920d;
+  background: linear-gradient(45deg, var(--cdark) 25%, transparent 25%, transparent 75%, var(--cdark) 75%, var(--cdark) 0px) 0 0 / 16px 16px repeat padding-box border-box, linear-gradient(45deg, var(--cdark) 25%, transparent 25%, transparent 75%, var(--cdark) 75%, var(--cdark) 0px) 8px 8px / 16px 16px repeat padding-box border-box, var(--clight);
+}
+
+.dark .color-picker .opacity-wrapper {
+  --cdark: #6b6b6b56;
+  --clight: #92929256;
+}
+
