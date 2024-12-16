@@ -33,6 +33,6 @@ pnpm install @mergehez/vue-color-picker
 ```
 
 > [!NOTE]
-> Go to [ColorPicker.vue](https://github.com/mergehez/vue-color-picker/src/components/ColorPicker.vue) for available props.
+> Go to [ColorPicker.vue](https://github.com/mergehez/vue-color-picker/blob/main/src/components/ColorPicker.vue) for available props.
 
 
