@@ -17,7 +17,7 @@ type ColorClasses = {
 };
 
 const modelValue = defineModel<string>({
-    default: '#FF0000',
+    default: '',
 })
 const props = withDefaults(defineProps<{
     palette?: boolean,
@@ -62,8 +62,10 @@ const hexColor = computed(() => colorUtils.rgbToHex(rgb.value))
 const hexWithoutAlpha = computed(() => hexColor.value.slice(0, 7))
 
 const setInitialColor = () => {
-    if (!modelValue.value)
+    if (!modelValue.value){
+        drawColorCanvas()
         return;
+    }
 
     let hex = modelValue.value;
     if (hex.startsWith('rgba')) {
@@ -331,6 +333,7 @@ const pal = props.palette ? (function () {
                 :class="twMerge('shadow cursor-crosshair rounded-md w-full h-full outline outline-1', classes?.canvas)"
             ></canvas>
             <div
+                v-if="modelValue"
                 :class="twMerge('absolute w-4 h-4 border-4  rounded-full shadow-sm pointer-events-none', classes.canvasCircle)"
                 :style="{
                   left: `${pickXY.x}%`,
@@ -369,11 +372,12 @@ const pal = props.palette ? (function () {
                 </div>
             </div>
         </div>
-        <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center justify-between gap-3" :class="modelValue ? '' : 'opacity-20'">
             <div class="relative flex-1 flex-grow">
                 <input
                     type="text"
-                    :value="hexColor"
+                    :disabled="!modelValue"
+                    :value="modelValue ? hexColor : ''"
                     @change="onUserHexInput(($event.target as any).value)"
                     :class="twMerge('px-1 w-full text-center text-sm py-px border rounded', classes.input)"
                 />
@@ -383,8 +387,9 @@ const pal = props.palette ? (function () {
                 <div v-for="key in Object.keys(rgb)" :key="key" class="relative">
                     <input
                         type="number" min="0" max="255"
-                        v-model="(rgb as any)[key]"
-                        @input="onUserRgbInput"
+                        :disabled="!modelValue"
+                        :value="modelValue ? (rgb as any)[key] : ''"
+                        @input="(rgb as any)[key] = ($event.target as any).value; onUserRgbInput()"
                         :class="twMerge('w-9 text-sm py-px px-px text-center outline-none border rounded', classes.input)"
                     />
                     <label class="absolute -top-1.5 left-1 font-bold text-xs leading-none">{{ key.toUpperCase() }}</label>
@@ -392,8 +397,8 @@ const pal = props.palette ? (function () {
                 <div class="relative">
                     <input
                         type="number" min="0" max="100"
-                        v-model="opacity"
-                        @input="onUserRgbInput"
+                        :value="modelValue ? opacity : ''"
+                        @input="opacity = ($event.target as any).value; onUserRgbInput()"
                         :class="twMerge('w-9 text-sm py-px px-px text-center outline-none border rounded', classes.input)"
                     />
                     <label class="absolute -top-1.5 left-1 font-bold text-xs leading-none">A</label>
