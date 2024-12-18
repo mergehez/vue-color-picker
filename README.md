@@ -4,7 +4,7 @@
 
 Since all color pickers I found were too large or too complex, I decided to create my own.
 
-The bundle size of the component is **9.3 KB** (minified) and **3.8 KB** (gzipped).
+The bundle size of the component is **9.6 KB** (minified) and **3.9 KB** (gzipped).
 
 ### [live demo](https://color-picker.mergesoft.dev/)
 

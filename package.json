@@ -1,6 +1,6 @@
 {
   "name": "@mergehez/vue-color-picker",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "a lightweight vue 3 color picker component",
   "author": "mergehez <argesozdogan@gmail.com>",
   "license": "MIT",
